@@ -1,4 +1,6 @@
-﻿#include <iostream>
+﻿#include <math.h>
+
+#include <iostream>
 #include <stack>
 #include <vector>
 
@@ -8,7 +10,7 @@ using namespace std;
 
 int orientation(pair<ll, ll> p, pair<ll, ll> q, pair<ll, ll> r) {
   ll val = (q.second - p.second) * (r.first - q.first) -
-            (q.first - p.first) * (r.second - q.second);
+           (q.first - p.first) * (r.second - q.second);
   if (val == 0) return 0;
   return (val > 0) ? 1 : 2;
 }
@@ -46,7 +48,7 @@ ll gcd(ll a, ll b) {
 }
 
 ll boundary(vector<pair<ll, ll>> A) {
-  ll total_points = A.size(); 
+  ll total_points = A.size();
   for (size_t i = 0; i < A.size(); i++) {
     ll distance_x = abs(A[i].first - A[(i + 1) % A.size()].first);
     ll distance_y = abs(A[i].second - A[(i + 1) % A.size()].second);
@@ -67,11 +69,11 @@ int main() {
       cin >> a >> b;
       points.push_back(make_pair(a, b));
     }
-    int n = sizeof(points) / sizeof(points[0]);
     convexHull(points);
 
     ll lattice_points = 0;
-    lattice_points = static_cast<ll>(-boundary(points) / 2. + polygonArea(points) + 1);
+    lattice_points =
+        static_cast<ll>(-boundary(points) / 2. + polygonArea(points) + 1);
     // Wzór Picka
     cout << lattice_points << endl;
   }
